@@ -1,0 +1,204 @@
+/*
+Css Images
+*/
+table
+{
+    display: block;
+    border: 1px;
+    border-color: black;
+    border: solid;
+    background-color: white;
+    padding:5px;
+    margin-left:25%;
+    margin-right: 25%;
+}
+
+tr
+{
+    text-align: center;
+}
+
+td
+{   
+    border:1px;
+    border-color:black;
+    border: solid;
+    padding: 1cm;
+}
+
+h1
+{
+    text-align: center;
+}
+
+h2
+{
+    text-align: center;
+}
+
+h3
+{
+    text-align: center;
+}
+
+p
+{
+    text-align: center;
+}
+
+#merchan
+{
+    height: 160px;
+    width: 160px;
+
+}
+
+#Header
+{
+    background-color: rgb(111, 192, 212);
+    width: 100%;
+    height: 50px;
+    margin-top: 0cm;
+}
+
+li
+{
+    text-decoration-style: none;
+    display: inline-block;
+    padding: 5px;
+    text-align: center;
+}
+
+#menu
+{
+    text-align: center;
+    font-size: 25px;
+    color: azure;
+}
+
+#formulary
+{
+    display: block;
+    background-color: rgba(143, 129, 69, 0.438);
+    padding: 3px;
+    margin-left: 10cm;
+    margin-right: 10cm;
+    font-size: 20px;
+    text-align: justify;
+}
+#admmenu
+{
+    background-color: white;
+    height: auto;
+    width: auto;
+    margin-left: 450px;
+    margin-right: 450px;
+    margin-bottom: 3px;
+    padding: 3px;
+    
+
+
+}
+
+#admmenu button
+{
+    font-size: 35px;
+    text-align: center;
+    padding: 3px;
+    float: left;
+
+}
+
+#sqldisplay
+{
+    
+    border:1px solid black;
+    border-radius: 0.3em;
+    background-color: rgb(170, 228, 208);
+    padding: 5px;
+    width: auto;
+    height: auto;
+    margin-bottom: 5px;
+
+}
+
+
+
+#sqldisplay1
+{
+    display:none;
+    border:1px solid black;
+    border-radius: 0.3em;
+    background-color: rgb(170, 228, 208);
+    padding: 5px;
+    width: auto;
+    height: auto;
+    margin-bottom: 5px;
+
+}
+#sqldisplay2
+{
+    display: none;
+    border:1px solid black;
+    border-radius: 0.3em;
+    background-color: rgb(170, 228, 208);
+    padding: 5px;
+    width: auto;
+    height: auto;
+    margin-bottom: 5px;
+
+}
+#sqldisplay3
+{
+    display: none;
+    border:1px solid black;
+    border-radius: 0.3em;
+    background-color: rgb(170, 228, 208);
+    padding: 5px;
+    width: auto;
+    height: auto;
+    margin-bottom: 5px;
+
+}
+
+
+
+#searchbox
+{
+    font-size: 25px;
+    margin: 3px 200px 3px 200px;
+    width: 1200px;
+    text-align: center;
+}
+
+.biglog
+{
+    color: blue;
+    font-size: 40px;
+}
+
+.logbox
+{
+    font-size: 22px;
+    font-size: 25px; 
+    text-align: center; 
+}
+
+footer
+{
+    background-color: rgb(111, 192, 212);
+    width: 100%;
+    height: 150px;
+    margin-bottom: 0cm;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 20px;
+}
+
+
+
+body
+{
+    background-color: rgba(6, 20, 15, 0.274);
+    margin:0px;
+}
