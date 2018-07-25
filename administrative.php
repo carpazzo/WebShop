@@ -1,11 +1,11 @@
-<!-- Started the page being a session so it uses the administrative ID alos to include the database conection -->
+<!-- Started the page being a session so it uses the administrative ID that have more permissions over the database -->
 <?php
     session_start ();
     $_SESSION["Login"] = "YES";
     if (isset ($_SESSION["uid"]))
     {
         echo "welcome ".$_SESSION["uid"];
-        include "database_conection.php"; 
+
     }
 ?>
 <!DOCTYPE html>
@@ -16,24 +16,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>admininstrative tool</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <?php echo '<link rel="stylesheet" type="text/css" href="style.css">'; ?>
+    
     
 </head>
 <body>
     <div id="wrapper">
         <div id ="Header">
-            <h2>Administrative Panel v1.0</h2>
+            <h2>Administrative Panel v1.1</h2>
         </div>
         <!-- the staff will have acess to some tools that will allow modify the database directly via the panel some of the controls still unavailable-->
-        <div id="admmenu">
-            <input type="button" id="clients"  value="Clients">
-            <input type="button" id="products"  value="Products">
-            <input type="button" id="orders" value="Orders">
-            <input type="button" id="na" value="Clear Search">
-            <input type="button"  value="Update Customer" >
-            <input type="button"  value="Refunds">
-            <input type="button" value="Log Out" onclick="location.href='logoff.php'" >
+        <div id="btnmenu">
+            <button id="clients-btn">Costumers</button>
+            <button id="products-btn">Products</button>
+            <button id="orders-btn">Orders</button>
+            <button id="clear-btn">Clear</button>
+            <button id="updatepage">Update</button>
+            <button id="refunds-btn">Refund </button>
             
+            <button onclick="location.href='logoff.php'" >Log Out</button>
             
         </div>
 
@@ -41,103 +41,35 @@
         <div id ="sqldisplay">
             
             <h3>Database Display</h3> 
-            <!-- here on display 1 we have all products being display -->
-            <div id ="sqldisplay1">
-            
-                <?php
-                    $query= "SELECT * FROM products" ;
-                    $result = mysqli_query($mysqlpoint, $query);
-                    while ($rad = mysqli_fetch_array($result))
-                    {
-                    echo $rad['ProductName']."<br>". " Size:".$rad['ProductSize']."<br>". " $".$rad['ProductPrice']. " ".$rad['ProductType']."<br>". " Details:".$rad['ProductColor']."<br>"."<br>";
-                    }
-                            
-                    echo "<br>";  
-                ?>
-
+            <!-- Now with ajax we can do something a little more appealing -->
+            <div id="data-container">
+            <!-- Here will be displayed the database content with ajax -->
             </div>
-             <!-- here on display 2 we have all customers being display --> 
-            <div id ="sqldisplay2">
-                
-                <?php
-                
-                    $customersquery= "SELECT * FROM customers" ;
-                    $results = mysqli_query($mysqlpoint, $customersquery);
-                    while ($row = mysqli_fetch_array($results))
-                    {
-                        echo "ID ".$row['CustomerID']."| Name: ".$row['CustomerName']." ".$row['CustomerSurname']. "| Email: ".$row['CustomerEmail']." | Address:".$row['CustomerAddress']."<br>";
-                    }
-                    echo "<br>";
-                ?>
-
-            </div> 
-             <!-- here on display 3 we have all orders being display -->
-            <div id ="sqldisplay3">
-                
-                <?php
-                
-                    $ordersquery= "SELECT * FROM orders" ;
-                    $results = mysqli_query($mysqlpoint, $ordersquery);
-                    while ($row = mysqli_fetch_array($results))
-                    {
-                        echo "ID ".$row['OrderID']."| CustomerID: ".$row['CustomerID_fk']."| Total Price ".$row['TotalPrice']. "| Quantity: ".$row['Quantity']."| Shipping date:".$row['Shipped']."<br>";
-                    }
-                    echo "<br>";
-                ?>
-
-            </div>    
-
-        </div> 
-         <!-- the idea with the search is that the user can look for somethin specifique in the database but i couldnt make it functional    -->
-        <input type="search" name="sqlsearch" placeholder="Database Search" id="searchbox"><input type="button" value="Search">    
-
-         <!-- here i want to be able for the staff update the customer if is that needed,the query is not working as intended,but it doenst show where is the error             -->
-        <h2>Customer Update</h2>            
-        <form action="administrative.php" method="POST">
-        
-        <label for="change name">Enter user ID</label>
-        <input type="number" placeholder="CustomerID" name="customerid" >            
-        <input type="text" placeholder= "new name" name="updatename">
-        <input type="text" placeholder= "surname" name="updatesurname">
-        <input type="email" placeholder= "email" name="updateemail">
-        <input type="text" placeholder= "address" name="updateaddress">
-        <input type="text" placeholder= "phone" name="updatephone"> 
-        <input type="button" name= "submit" value="Update">           
-        <?php
-
-                
-            if (isset($_POST['submit']))
-            {
-                $cid= $_POST['customerid'];        
-                $cname = $_POST['updatename'];
-                $csurname = $_POST['updatesurname'];
-                $cmail = $_POST['updateemail'];
-                $caddress = $_POST['updateaddress'];
-                $cphone = $_POST['updatephone'];
        
+        </div> 
+         <!-- the idea with the search is that the user can look for something specifique in the database but i couldnt make it functional    -->
+        <p>
+        <input type="text" placeholder="ID" id="idsearchbox">
+        <div id="customer-display">
+        <!-- This Div will display the name of the customer by its ID -->
+        </div>
+        </p>
+        <p>
+        <button id="search-btn">Search</button>
+        <button id="clear-search">Clear</button>    
+        </p>
 
-            
-                $sqlupdate = $mysqlpoint->prepare ("UPDATE customers SET CustomerName='$name', CustomerSurname='$csurname', CustomerEmail='$cmail', CustomerAddress='$caddress', CustomerPhone='$cphone' WHERE CustomerID ='$cid'");
-                $query->execute();
-                if(!mysqli_query($mysqlpoint,$sqlupdate))
-                {   
-                    die ("Error updating Membership!".mysqli_error($mysqlpoint));
-                }
-                else 
-                {
-                    echo "Customer Updated!";
-                    session_start ();
-                    header ("Location: administrative.php");
-                }
-           
-           
-               
-            }
-          
-  
-        ?>           
-
-        
+         <!-- here i want to be able for the staff update the customer if is that needed -->
+        <h2>Customer Update</h2>            
+        <form id="update-form" method="POST">
+            <label for="change name">Enter user ID</label>
+            <input type="number" placeholder="CustomerID" name="customerid" >            
+            <input type="text" placeholder= "new name" name="customerName">
+            <input type="text" placeholder= "surname" name="customerSurname">
+            <input type="email" placeholder= "email" name="customerEmail">
+            <input type="text" placeholder= "address" name="customerAddress">
+            <input type="text" placeholder= "phone" name="customerPhone"> 
+            <input type="submit" value="Update">             
         </form>
 
         <footer >
@@ -145,27 +77,8 @@
         </footer>        
 
     </div>
-    <!-- the javascript to give some function to the clicks since the display is hidden as default -->
-    <script type="text/javascript">
-       
-       document.getElementById("products").onclick = function() 
-       {
-           document.getElementById("sqldisplay1").style.display="block";
-       } 
-       document.getElementById("clients").onclick = function() 
-       {
-           document.getElementById("sqldisplay2").style.display="block";
-       } 
-       document.getElementById("orders").onclick = function() 
-       {
-           document.getElementById("sqldisplay3").style.display="block";
-       } 
-
-       document.getElementById("na").onclick = function()
-       { 
-           document.getElementById("sqldisplay").innerHTML = "Search Clear press F5";  
-       }
     
-    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/admin.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 
 <?php
     session_start ();
-    
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,15 +27,13 @@
                     <p>
                     <input type="password"  class="logbox" name="userpassword" placeholder= "PASSWORD" required>
                     </p>
+                    <h2 id="warning"></h2>
                     <p>
-                    <input type="submit"  value="Login"> <a href="form.php"><button type="button">Register</button></a>
+                    <button type="submit">Login</button>
+                    <button onclick="location.href='form.php'">Register</button>
                     </p>
-                    <!-- I thoug about have a guest login in case a person whants only browsing but this login page open upon request and not default,this is not the page index -->
-                    <!-- <p>
-                    <button type="button" onclick="location.href='merchandise.php'">Just browsing!</button>    
-                    </p> -->
-
-                 </form>
+                 
+                </form>
 
             </div>
             
@@ -48,6 +46,7 @@
         </footer>
         
     </div>
+    
     
 </body>
 </html>

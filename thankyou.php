@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="jquery.min.js"></script>
     <?php
      include "database_conection.php";
     
@@ -17,11 +18,20 @@
      //adding username and password to be used on login screen
      $username = $_POST['username'];
      $password = $_POST['userpassword'];
-
+    //SELECT CustomerEmail FROM customers WHERE email = ? Limit 1";
+     $unique = "SELECT * FROM customer WHERE CustomerEmail = '$cmail'";
+     $run = mysqli_query($mysqlpoint,$unique);
+     $check_email = mysqli_num_rows($run);
+     if($check_email == 1)
+     {
+         echo "email already registered!";
+         exit();
+     }
+     else {
         if (isset($_POST['submit']))
         {
          $sqlinsert = "INSERT INTO customers(CustomerName, CustomerSurname, CustomerEmail, CustomerAddress, CustomerPhone) VALUES ('$cname','$csurname','$cmail','$caddress','$cphone'); INSERT INTO loginuser(username, userpassword) VALUES ('$username','$password')";
-         //SELECT CustomerEmail FROM customers WHERE email = ? Limit 1";     
+              
          //I change the querry for multi query because im adding information to 2 tables .   
          if(!mysqli_multi_query($mysqlpoint,$sqlinsert))
             {   
@@ -35,10 +45,14 @@
            
                
         }
+     }   
+
+
+       
           
   
     ?>
-    <title>Thank you page</title>
+    <title>Thank you for register!</title>
 </head>
 <body>
     <div id="wrapper">

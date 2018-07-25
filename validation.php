@@ -22,6 +22,7 @@ $result = mysqli_query($mysqlpoint, $loginquery);
     {  
         session_start ();
         header ("Location: login.php");
+        
     }
 
     //for administrative account check

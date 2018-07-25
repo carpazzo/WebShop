@@ -38,15 +38,15 @@
                 </p>
                 <p>
                 <label for="password">Password</label>
-                <input type="text"  name="userpassword" required>
-                <!-- retype password after -->
+                <input type="password"  name="userpassword" id= "password" required>
+                
                 </p>
                 
         
                 <p></p>
                 <p>
                 <label for="email">Email:</label>
-                <input name= "email" type="email" placeholder="Your Email@host.com" required>
+                <input name= "email" type="email" id="email" placeholder="Your Email@host.com" required>
                 <label for="phone">Phone:</label>
                 <input type="text" placeholder="Mobile Number" name="phone" required>
                 </p>    
