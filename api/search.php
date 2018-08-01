@@ -1,5 +1,4 @@
 <?php
-
     session_start ();
     $_SESSION["Login"] = "YES";
     if (isset ($_SESSION["uid"]))
@@ -11,7 +10,7 @@
             $searchQuery = $_GET["searchQuery"];
             $customersquery= "SELECT * FROM customers WHERE CustomerID = '$searchQuery'";
             $results = mysqli_query($mysqlpoint, $customersquery);
-            $json = mysqli_fetch_all($results, MYSQLI_ASSOC);
+            $json = mysqli_fetch_assoc($results);
             echo json_encode($json);
         }
 

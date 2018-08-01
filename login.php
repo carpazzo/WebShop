@@ -11,32 +11,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-     
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
     
 </head>
 <body>
-    <div id:"wrapper">
-        <h3 class="biglog">Login</h3>
-        
-            <div id:"loginbox">
-           
-                <form method="POST" action="validation.php" >
-                    <p>
-                    <input type="text" class="logbox" name="username" placeholder="USERNAME" required>
-                    </p>
-                    <p>
-                    <input type="password"  class="logbox" name="userpassword" placeholder= "PASSWORD" required>
-                    </p>
-                    <h2 id="warning"></h2>
-                    <p>
-                    <button type="submit">Login</button>
-                    <button onclick="location.href='form.php'">Register</button>
-                    </p>
-                 
+    <div id:"wrapper">   
+        <div class="container">
+            <h3 class="biglog">Login</h3>
+            <form method="POST" action="validation.php" >
+                <fieldset class="form-group">
+                    <input type="text" class="form-control" name="user-email" placeholder="Email" required>
+                </fieldset>
+                <fieldset class="form-group">
+                    <input type="password"  class="form-control" name="userpassword" placeholder= "PASSWORD" required>
+                </fieldset>
+                <h2 id="warning"></h2>
+                <fieldset class="form-group">
+                    <button type="submit" class="btn btn-outline-primary">Login</button>
+                    <button onclick="location.href='form.php'" class="btn btn-outline-primary">Register</button>
+                </fieldset>
                 </form>
-
-            </div>
-            
+        </div>
+          
         <footer>
                 
             <h3>Policy</h3>

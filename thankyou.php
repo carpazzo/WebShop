@@ -1,74 +1,50 @@
+<?php
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="jquery.min.js"></script>
-    <?php
-     include "database_conection.php";
-    
-     $cname = $_POST['name'];
-     $csurname = $_POST['surname'];
-     $cmail = $_POST['email'];
-     $caddress = $_POST['address'];
-     $cphone = $_POST['phone'];
-     //adding username and password to be used on login screen
-     $username = $_POST['username'];
-     $password = $_POST['userpassword'];
+    include "database_conection.php";
+
+    $cname = mysqli_real_escape_string($mysqlpoint,$_POST['name']);
+    $csurname = mysqli_real_escape_string($mysqlpoint,$_POST['surname']);
+    $cmail = mysqli_real_escape_string($mysqlpoint,$_POST['email']);
+    $caddress = mysqli_real_escape_string ($mysqlpoint,$_POST['address']);
+    $cphone = mysqli_real_escape_string($mysqlpoint,$_POST['phone']);
+    //Username has been removed now user will log in using email and password
+    $password = mysqli_real_escape_string ($_POST['password']);
+    //reinforce the security of the database password with the new html 5 encoding method
+    $securepassword = password_hash("$password", PASSWORD_DEFAULT);
+    //So now it is important that the email be unique on the database.
     //SELECT CustomerEmail FROM customers WHERE email = ? Limit 1";
-     $unique = "SELECT * FROM customer WHERE CustomerEmail = '$cmail'";
-     $run = mysqli_query($mysqlpoint,$unique);
-     $check_email = mysqli_num_rows($run);
-     if($check_email == 1)
-     {
-         echo "email already registered!";
-         exit();
-     }
-     else {
+    $unique = "SELECT CustomerEmail FROM customers WHERE '$cmail' = CustomerEmail ";
+    $run = mysqli_query($mysqlpoint,$unique);
+    $check_email = mysqli_num_rows($run);
+    if($check_email > 0)
+    {
+        
+        echo "Email already registered!";
+        header( "refresh:3;url=form.php" );
+        exit();
+    }
+    else 
+    {
         if (isset($_POST['submit']))
         {
-         $sqlinsert = "INSERT INTO customers(CustomerName, CustomerSurname, CustomerEmail, CustomerAddress, CustomerPhone) VALUES ('$cname','$csurname','$cmail','$caddress','$cphone'); INSERT INTO loginuser(username, userpassword) VALUES ('$username','$password')";
-              
-         //I change the querry for multi query because im adding information to 2 tables .   
-         if(!mysqli_multi_query($mysqlpoint,$sqlinsert))
+            $sqlinsert = "INSERT INTO customers(CustomerName, CustomerSurname, CustomerEmail, CustomerAddress, CustomerPhone, Customerpassword) 
+            VALUES ('$cname','$csurname','$cmail','$caddress','$cphone','$securepassword')";
+                
+            //Back to a simple query to reduce the num ber of query since the username was removed  
+            if(!mysqli_query($mysqlpoint,$sqlinsert))
             {   
-              die ("Error Creating new Membership!".mysqli_error($mysqlpoint));
+                die ("Error Creating new Membership!".mysqli_error($mysqlpoint));
             }
             echo "Welcome New Member!";
             echo "<br />";
             echo "Thank you for Register $cname"; 
             echo "<br />";
             echo "We will contact you at $cmail";
-           
-               
+
+            header( "refresh:4;url=login.php" );
+            
+                
         }
-     }   
+    }   
 
-
-       
-          
-  
-    ?>
-    <title>Thank you for register!</title>
-</head>
-<body>
-    <div id="wrapper">
-        <p>
-        <button type="button" onclick="location.href='merchandise.php'">Go To Shop!</button>
-        </p>
-
-        <footer>
-                
-           <h3>Policy</h3>
-               
-           <h3>Contact</h3>
-                
-        </footer>
-    </div>
-    
-</body>
-</html>
-
+?>

@@ -4,45 +4,31 @@
     if (isset ($_SESSION["uid"]))
     {
         include "../database_conection.php"; 
-        if (isset($_POST[0])){
-            echo json_encode($_POST[0]);
+        if (isset($_POST)){
+          $cid = $_POST["customerID"];
+          $cname = $_POST["customerName"];
+          $csurname = $_POST["customerSurname"];
+          $cemail = $_POST["customerEmail"];
+          $caddress = $_POST["customerAddress"];
+          $cphone = $_POST["customerPhone"];          
+          
+          $stmt = mysqli_prepare($mysqlpoint, "UPDATE customers SET CustomerName='$cname', CustomerSurname='$csurname', CustomerEmail='$cemail', CustomerAddress='$caddress', CustomerPhone='$cphone' WHERE CustomerID ='$cid'");
+            
+            /* execute query */
+            mysqli_stmt_execute($stmt);
+
+            /* fetch value */
+            mysqli_stmt_fetch($stmt);
+
+            /* close statement */
+            mysqli_stmt_close($stmt);
         }
-        // $customersquery= "SELECT * FROM customers" ;
-        // $results = mysqli_query($mysqlpoint, $customersquery);
-        // $json = mysqli_fetch_all($results, MYSQLI_ASSOC);
-        // echo json_encode($json);
+
     } else 
     {
         header('HTTP/1.0 401 Unauthorized');
         echo 'You are not logged in!';
     }
 
-    // if (isset($_POST['submit']))
-// {
-//     $cid= $_POST['customerid'];        
-//     $cname = $_POST['updatename'];
-//     $csurname = $_POST['updatesurname'];
-//     $cmail = $_POST['updateemail'];
-//     $caddress = $_POST['updateaddress'];
-//     $cphone = $_POST['updatephone'];
-
-
-
-//     $sqlupdate = $mysqlpoint->prepare ("UPDATE customers SET CustomerName='$name', CustomerSurname='$csurname', CustomerEmail='$cmail', CustomerAddress='$caddress', CustomerPhone='$cphone' WHERE CustomerID ='$cid'");
-//     $query->execute();
-//     if(!mysqli_query($mysqlpoint,$sqlupdate))
-//     {   
-//         die ("Error updating Membership!".mysqli_error($mysqlpoint));
-//     }
-//     else 
-//     {
-//         echo "Customer Updated!";
-//         session_start ();
-//         header ("Location: administrative.php");
-//     }
-
-
-   
-// }
 
 ?>

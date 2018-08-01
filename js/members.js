@@ -1,4 +1,5 @@
     
+//This function will iterate over the datavase and return the products
 $(document).ready(function()
 {
     $.ajax({
@@ -7,18 +8,16 @@ $(document).ready(function()
         success: function(data, responseText, xhr)
         {
             var products = JSON.parse(data);
-            clearContainer();
-            // while ($row = mysqli_fetch_array($result))
             for(var i=0; i<products.length; i++)
-            {
-                $("products-display").append("<p>ID:"+products.ProductID+", Product: "+products[i].ProductName+", ProductSize: "+products[i].ProductSize+", Price: "+products[i].ProductName+", Type: "+products[i].ProductType+"</p>");
-                
+            {   
+                $("#products-display").append("<p>Product: "+products[i].ProductName+", Size: "+products[i].ProductSize+", Price: "+products[i].ProductName+", Type: "+products[i].ProductType+"</p><img height=150px,width=150px, src='data:image/jpg;base64,"+products[i].ProductImage+"'/>");
+                // <img src='data:image/jpg;base64,"+products[i].ProductImage+"'/>
             }
         },
         error: function(xhr, statusText, errorMessage)
         {
             clearContainer();
-            $("products-display").append("<p style='color: red;'>Failed to load Products</p>");
+            $("#products-display").append("<p style='color: red;'>Failed for some reason!</p>");
         }
     });
 });
@@ -34,7 +33,7 @@ $("#history-purchase").on("click", function()
             clearContainer();
             for(var i=0; i<orders.length; i++)
             {
-                $("#customer-history").append("<p id='sqlp'>ID: "+orders[i].OrderID+", Customer ID: "+orders[i].CustomerID_fk+", Total Price: "+orders[i].TotalPrice+", Quantity: "+orders[i].Quantity+", Shipping Date: "+orders[i].Shipped+"</p>");
+                $("#customer-history").append("<p id='sqlp'>ID: "+orders[i].OrderID+", Product: "+orders[i].ProductID_fk+", Total Price: "+orders[i].TotalPrice+", Quantity: "+orders[i].Quantity+", Shipping Date: "+orders[i].Shipped+"</p>");
                 
             }
         },
@@ -45,45 +44,6 @@ $("#history-purchase").on("click", function()
         }
     });
 });
-
-// $(document).ready(function()
-// {
-//     $("#search").keyup(function()
-//     {
-//         $("#result").html("");
-//         var searchfield = $("#search").val();
-//         var expression = new RegExp(searchfield,"i");
-        // $.getJson("products.json",function(data)
-        // {
-        //     $.each(data,function(key,value)
-        //     {
-        //        if(value.name.search(expression)!= -1 || value.location.search(expression)!= -1)
-        //        {
-        //           $("#result").append("<p>"+productName+"</p>"); 
-        //        } 
-        //     });
-        // })
-//         $.ajax({
-//             method: "GET",
-//             url: "api/products.php",
-//             success: function(data, responseText, xhr)
-//             {
-//                 var products = JSON.parse(data);
-//                 $.each(products,function(key,value)
-//                 {
-//                     if(value.name.search(expression)!= -1 || value.location.search(expression)!= -1)
-//                     {
-//                         $("#result").append("<p>"+products[i].productName+"</p>"); 
-//                     } 
-//                 });  
-            
-//             },
-           
-//         });
-//     })
-// })
-
-
 
 
 $("#clear-btn").on("click",function()
