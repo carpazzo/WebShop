@@ -5,7 +5,6 @@
     if (isset ($_SESSION["uid"]))
     {
         echo "welcome ".$_SESSION["uid"];
-
     }
 ?>
 <!DOCTYPE html>

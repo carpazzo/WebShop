@@ -17,7 +17,7 @@
             <nav id="menu">
              <a href="merchandise.php">Home</a>
              <a href="form.php">Become a Member</a>
-             <a href="login.php">Log In</a>
+             <a href="index.php">Log In</a>
             </nav>
             
         </div>

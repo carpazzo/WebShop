@@ -26,7 +26,7 @@ else
 {
     // send back error message that username/password doesn't match
     session_unset();
-    header ("Location: login.php");
+    header ("Location: index.php");
 }
 
 //for administrative account check

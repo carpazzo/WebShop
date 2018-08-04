@@ -60,7 +60,14 @@
         <p>Become a member today and get 5%off!</p>
         <div id="products-display">
             <!-- here is the display for all products in store -->
-        </div>     
+        </div> 
+
+        <div class="container p-3">
+            <div id="merch-cards" class="row justify-content-center">
+            <!-- new way to display products -->
+            </div>
+        </div>
+        <button></button>
         <footer >
                 
            <h3>Policy</h3>
