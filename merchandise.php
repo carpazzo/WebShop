@@ -56,7 +56,7 @@
         </div>
        
 
-        <h1>Some of our Products</h1>
+        <h1 id="biglog">Some of our Products</h1>
         <p>Become a member today and get 5%off!</p>
         <div id="products-display">
             <!-- here is the display for all products in store -->
@@ -67,15 +67,12 @@
             <!-- new way to display products -->
             </div>
         </div>
-        <button></button>
-        <footer >
-                
-           <h3>Policy</h3>
-               
-           <h3>Contact</h3>
-                
-        </footer>
+        
+       
     </div>
+        <footer id="dev">
+            DRDev<sup>&reg;</sup>   
+        </footer>
     <script src="js/jquery.min.js"></script>
     <script src="js/members.js"></script>
     <!-- I added the script provided by the guide to make that widget offered in JqueryUI -->

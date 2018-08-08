@@ -76,13 +76,10 @@
             <input class="btn btn-warning btn-sm" type="submit" value="Password Update">   
         </form>
 
-
-
-        <footer >
-            <h2>Web Developer Dalton Ramiro</h2>
-        </footer>        
-
     </div>
+    <footer id="dev">
+        DRDev <sup>&reg;</sup>
+    </footer>  
     
     <script src="js/jquery.min.js"></script>
     <script src="js/admin.js"></script>

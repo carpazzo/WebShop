@@ -86,6 +86,7 @@ li
     width: 700px;
     position: relative;
     left: 33%;
+
 }
 
 
@@ -173,21 +174,32 @@ li
 
 .biglog
 {
-    color: blue;
-    font-size: 40px;
+    color: rgb(247, 247, 247);
+    font-size: 45px;
+    text-shadow: 6px 3px 8px rgb(18, 38, 95);
+}
+#container
+{
+    display: block;
+    width: 650px;
+    margin: auto;
+    margin-top: 150px;
+    background-color: rgba(88, 129, 190, 0.301);
+    padding: 20px;
+    border-radius: 0.4em;
 }
 
 
-
-footer
+#bigfoot
 {
-    position: static;
+    position:fixed;
+    display: block;
     bottom: 0px;
     left: 0px;
     margin-top: 10px;
-    background-color: rgb(17, 12, 61);
+    background-color: rgba(17, 12, 61, 0.685);
     width: 100%;
-    height: 200px;
+    height: 130px;
     text-align: center;
     padding-top: 55px;
     font-size: 20px;
@@ -206,32 +218,37 @@ body
     
     margin:0px;
     padding: 0px;
-    height: 100%;
+    background-image: url(background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+   
+}
+#wrapper
+{
+    min-height: 100%;
+    margin:0px;
+    padding-bottom: 50px;
+    overflow: visible;
 }
 html
 {
     margin:0px;
     padding: 0px;
-    height: 100%;
     
 }
-.container
+#dev
 {
-    min-height: 100%;
+    margin-top: 10px;
+    display: block;
+    bottom: 0px;
+    left: 0px;
+    background-color: rgba(17, 12, 61, 0.685);
+    width: 100%;
+    height: auto;
+    text-align: right;
+    font-size: 30px;
+    color: aliceblue;
 }
-.container input
-{
-    width: 600px;
 
-}
-.container textarea
-{
-    width: 600px;
-}
-
-#wrapper
-{
-   
-    position: relative;
-}
 

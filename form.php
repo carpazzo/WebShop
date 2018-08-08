@@ -22,7 +22,7 @@
             
         </div>
 
-        <h3>Register!</h3>
+        <h3 class="biglog">Register!</h3>
         <div id="formulary">  
            
 
@@ -64,7 +64,7 @@
         </div>        
         <p></p>
 
-        <footer >
+        <footer id="bigfoot" >
                 
             <h3>Policy</h3>
                     
