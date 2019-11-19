@@ -1,7 +1,7 @@
 <?php
     /* Host,username,password, database name*/
-    $user = "dalton";
-    $password = "admindatabase";
+    $user = "root";
+    $password = "";
     $database = "webstore";
 
     $mysqlpoint = mysqli_connect("localhost", "$user", "$password", "$database"); 
@@ -9,8 +9,8 @@
     { 
         echo "Something went wrong:". mysqli_connect_error (); 
     }
-    /*else
+    else
     {
-        echo "Welcome Admin!"; //here is to test if the database conection is working//
-    }*/
+        echo "Welcome WebDev!"; //here is to test if the database conection is working//
+    }
 ?>
